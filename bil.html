@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+<title> Personal Runner</title>
+
+<head>
+     
+
+  
+
+<script>
+
+  function setFocus(){
+    document.frmBil.txttnb.focus();
+  }
+  function calc(){
+    var t=document.frmBil.txttnb.value;
+    var s=document.frmBil.txtsyabas.value;
+    var a=document.frmBil.txtastro.value;
+    var u=document.frmBil.txttm.value;
+
+    t = parseFloat(t);
+    s = parseFloat(s);
+    a = parseFloat(a);
+    u = parseFloat(u);
+    //t = t.parseInt(t);
+   // t = t.parseInt(t);
+
+
+    var tot = t+s+a+u;
+    document.getElementById("jum").value=tot;
+    
+  }
+</script>
+<!-- end of header -->
+</head>
+
+<body onload="setFocus()">
+
+<center>
+<form name="frmBil" action="" method="POST"><br><br>
+
+</table>
+<centre><h1><font color="black" face="Courier New"><b>Bil Elektrik</font></h1>
+
+
+<table border="1" width="40%" height= "30%">
+
+<tr>
+  <td><font color="black" face="Arial"><b>TNB:</td>
+<td><input type="text" name="txttnb" size="30" ></td>
+</tr>
+<tr>  
+<td><font color="black" face="Arial"><b>Air Syabas:</td>
+  <td><input type="text" name="txtsyabas" size="30" ></td>
+</tr>
+
+<tr>
+<td><font color="black" face="Arial"><b>TM/UniFi:</td>
+<td><input type="text" name="txttm" size="30"></td>
+</tr>
+
+<tr>
+<td><font color="black" face="Arial"><b>Astro:</td>
+<td><input type="text" name="txtastro" size="30"></td>
+</tr>
+
+</table>
+<p><input type="button" value="Kira Jumlah" onclick="return calc()"></p>
+
+<p>Jumlah Keseluruhan:
+<input type="text" name="textJumlah" name="jum" id="jum" disabled>
+<br><br><br>
+<button class="button" style="vertical-align:middle">
+ <a href="runner.html">
+Cari Runner</button></a>
+
+</td></tr>
+
+</center>
+
+
+
+
+
+
+
+
+
+
+<hr>
+<footer class="container-fluid text-center">
+<body link="white">
+ <center> <font color="white" size="5">Copyright © PersonalRunner 2017 All rights reserved.</center>
+</footer>
+<hr>
+</div>
+</body>
+
+</html>

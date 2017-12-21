@@ -1,63 +1,43 @@
-<!DOCTYPE html>
+<!DOCTYPE>
 <html>
 <head>
 
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+	<script type="text/javascript">
+		
+		function add(){
 
+			    var t=document.frmBil.txttnb.value;
+			    var s=document.frmBil.txtsyabas.value;
+			    var a=document.frmBil.txtastro.value;
+			    var u=document.frmBil.txttm.value;
 
+			    t = parseFloat(t);
+			    s = parseFloat(s);
+			    a = parseFloat(a);
+			    u = parseFloat(u);
 
-<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+			    var tot = t+s+a+u;
+			    document.getElementById("jum").value=tot;
 
+			    var database = firebase.database();
 
+			        var ref = database.ref('BIL');
 
-<title> Personal Runner</title>
+			        var data = {
+			          TNB: t,
+			          SYABAS: s,
+			          TM: a,
+			          ASTRO: u,
+			          JUMLAH: tot,
+			        }
+			        ref.push(data);
 
-<head>
+			        alert("Data anda telah disimpan. Sila tekan butang 'Cari Runner' untuk mencari runner")
+		}
 
-  
-
-<script>
-
-
-  function setFocus(){
-    document.frmBil.txttnb.focus();
-  }
-  function calc(){
-    var t=document.frmBil.txttnb.value;
-    var s=document.frmBil.txtsyabas.value;
-    var a=document.frmBil.txtastro.value;
-    var u=document.frmBil.txttm.value;
-
-    t = parseFloat(t);
-    s = parseFloat(s);
-    a = parseFloat(a);
-    u = parseFloat(u);
-    //t = t.parseInt(t);
-   // t = t.parseInt(t);
-
-
-    var tot = t+s+a+u;
-    document.getElementById("jum").value=tot;
-
-   
-          var database = firebase.database();
-
-              var ref = database.ref('BIL');
-
-              var data = {
-                TNB: t,
-                SYABAS: t,
-                TM: t,
-                ASTRO: t,
-                JUMLAH: t,
-              }
-              ref.push(data);
-    }
-
-     // Initialize Firebase
+		 // Initialize Firebase
   var config = {
     apiKey: "AIzaSyBJEiXovPX3Z2rWeZo11VnMs5cHKZKdbCc",
     authDomain: "personalrunner-84e14.firebaseapp.com",
@@ -67,64 +47,44 @@
     messagingSenderId: "735369791480"
   };
   firebase.initializeApp(config);
-  </script>
-  
-
-          <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
-
-
-</script>
-<!-- end of header -->
+	</script>
+	
 </head>
 
-<body onload="setFocus()">
+<body align="center">
 
-<center>
-<form name="frmBil" action="" method="POST"><br><br>
+	
+	<form name="frmBil">
+	<centre><h1><font color="black" face="Courier New"><b>Utilities Bills</font></h1>
 
-<centre><h1><font color="black" face="Courier New"><b>Bil Elektrik</font></h1>
+	<table border="1" width="40%" height= "30%" align="center">
 
-<table border="1" width="40%" height= "30%">
+	<tr>
+	  <td><font color="black" face="Arial"><b>TNB:</td>
+	  <td><input type="text" name="txttnb" size="30" ></td>
+	</tr>
+	<tr>  
+	  <td><font color="black" face="Arial"><b>Air Syabas:</td>
+	  <td><input type="text" name="txtsyabas" size="30" ></td>
+	</tr>
+	<tr>
+	  <td><font color="black" face="Arial"><b>TM/UniFi:</td>
+	  <td><input type="text" name="txttm" size="30"></td>
+	</tr>
+	<tr>
+	  <td><font color="black" face="Arial"><b>Astro:</td>
+	  <td><input type="text" name="txtastro" size="30"></td>
+	</tr>
+	</table><br><br>
+	<input type="button" name="z" onclick="add()" value="Calculate"> <br>
 
-<tr>
-  <td><font color="black" face="Arial"><b>TNB:</td>
-  <td><input type="text" name="txttnb" size="30" ></td>
-</tr>
-<tr>  
-  <td><font color="black" face="Arial"><b>Air Syabas:</td>
-  <td><input type="text" name="txtsyabas" size="30" ></td>
-</tr>
-<tr>
-  <td><font color="black" face="Arial"><b>TM/UniFi:</td>
-  <td><input type="text" name="txttm" size="30"></td>
-</tr>
-<tr>
-  <td><font color="black" face="Arial"><b>Astro:</td>
-  <td><input type="text" name="txtastro" size="30"></td>
-</tr>
-</table>
-<p><input type="button" value="Kira Jumlah" onclick="return calc()"></p>
+	<p>Total Payment:
+	<input type="text" name="textJumlah" name="jum" id="jum" disabled>
+	</form>
+	<br><br><br>
+	<button class="button" style="vertical-align:middle">
+	 <a href="runner.html">
+	Book Runner</button></a>
 
-<p>Jumlah Keseluruhan:
-<input type="text" name="textJumlah" name="jum" id="jum" disabled>
-<br><br><br>
-<button class="button" style="vertical-align:middle">
- <a href="runner.html">
-Cari Runner</button></a>
-
-</td></tr>
-
-</center>
-
-
-<hr>
-<footer class="container-fluid text-center">
-<body link="white">
- <center> <font color="white" size="5">Copyright © PersonalRunner 2017 All rights reserved.</center>
-</footer>
-<hr>
-</div>
 </body>
-
 </html>

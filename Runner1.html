@@ -1,94 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Firebase Web Basics</title>
 
-<style>
-
-html {height:100%;}
-body {height:100%; margin:0; padding:0;}
-
-.navbar_top
-{
-   padding-top: 10px;
-   padding-bottom: 10px;
-   position:fixed;
-   width:100%;
-   top:0;
-   background-color: #FFFFFF;
-   font-size: 15px;
-   z-index:50;
-}
-#bg {position:fixed; top:0; left:0; width:100%; height:100%;}
-
-#content {position:relative; z-index:0;}
-
-header {background: black;color:white;}
-
-.flex-container > * 
-{
-    padding: 15px;
-    -webkit-flex: 1 100%;
-    flex: 1 100%;
-  text-align: center;
-}
-</style>
-
-<div id="bg"><img src="b2.jpg" width="100%" height="100%" alt=""></div>
-<div id="content">
-
-<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<div id="content">
-
-<title> Personal Runner</title>
-
-<head>
-<br>
-<nav class="navbar navbar-inverse"><br>
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="index.php"><img src="runner.png" height="80" width="90" align="top" height="0"></a>
-     </div>
-
-       <h1><font color="white">Personal Runner</h1>
-    
-  </div>
-</nav>
-
-<!-- end of header -->
 </head>
-
-
 <body>
 
-<center><h1><b><font color="black">Maklumat Runner:</font></b></h1></center>
 
-<center>    
-<img src="runner.png" width="300" height="300"/><br>
-<center><font color="black">Muhammad Asyraf<br>
-                               ID: S101<br>
-                               014-5367825 <br>
-                               Jalan Plumbum 7, Seksyen 7 Shah Alam
-                               </center>
-
-
-
-
-
-
+      <h1>RUNNERS</h1><br>
+      <table border=1 width="100%" align="center" height="80%">
+          <thead>
+              <tr>
+                  <td align="center">RUNNERS</td>
+              </tr>
+          </thead>
+          <tbody id="table_body">
+             
+          </tbody>
+      </table>       
+    </div>
 
 
-<hr>
-<footer class="container-fluid text-center">
-<body link="white">
- <center> <font color="white" size="5">Copyright © PersonalRunner 2017 All rights reserved.</center>
-</footer>
-<hr>
-</div>
+<script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBJEiXovPX3Z2rWeZo11VnMs5cHKZKdbCc",
+    authDomain: "personalrunner-84e14.firebaseapp.com",
+    databaseURL: "https://personalrunner-84e14.firebaseio.com",
+    projectId: "personalrunner-84e14",
+    storageBucket: "personalrunner-84e14.appspot.com",
+    messagingSenderId: "735369791480"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script>
+  
+alert("HAII");
+var rootRef = firebase.database().ref().child("RUNNER");
+var z=0;
+rootRef.on("child_added", snap =>{
+
+    var name = snap.child("NAMA").val();
+    var i = snap.child("ID").val();
+    var t = snap.child("TELIFON").val();
+    var aa = snap.child("ALAMAT").val();
+
+    
+    if(z==0){
+    $("#table_body").append("<br><br><center> <img src='runner.png' width='300' height='300'/><br>  <center><h3><font color='black'><b>"+name+"<br>"+i+"<br><a href='tel:+6"+t+"'>"+t+"</a><br>"+aa+" </h3></center>");
+}
+z++;
+});
+
+</script>
 </body>
-
 </html>

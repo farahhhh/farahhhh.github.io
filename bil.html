@@ -16,11 +16,11 @@
 <title> Personal Runner</title>
 
 <head>
-     
 
   
 
 <script>
+
 
   function setFocus(){
     document.frmBil.txttnb.focus();
@@ -41,8 +41,39 @@
 
     var tot = t+s+a+u;
     document.getElementById("jum").value=tot;
-    
-  }
+
+   
+          var database = firebase.database();
+
+              var ref = database.ref('BIL');
+
+              var data = {
+                TNB: t,
+                SYABAS: t,
+                TM: t,
+                ASTRO: t,
+                JUMLAH: t,
+              }
+              ref.push(data);
+    }
+
+     // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBJEiXovPX3Z2rWeZo11VnMs5cHKZKdbCc",
+    authDomain: "personalrunner-84e14.firebaseapp.com",
+    databaseURL: "https://personalrunner-84e14.firebaseio.com",
+    projectId: "personalrunner-84e14",
+    storageBucket: "personalrunner-84e14.appspot.com",
+    messagingSenderId: "735369791480"
+  };
+  firebase.initializeApp(config);
+  </script>
+  
+
+          <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+
+
 </script>
 <!-- end of header -->
 </head>
@@ -52,31 +83,26 @@
 <center>
 <form name="frmBil" action="" method="POST"><br><br>
 
-</table>
 <centre><h1><font color="black" face="Courier New"><b>Bil Elektrik</font></h1>
-
 
 <table border="1" width="40%" height= "30%">
 
 <tr>
   <td><font color="black" face="Arial"><b>TNB:</td>
-<td><input type="text" name="txttnb" size="30" ></td>
+  <td><input type="text" name="txttnb" size="30" ></td>
 </tr>
 <tr>  
-<td><font color="black" face="Arial"><b>Air Syabas:</td>
+  <td><font color="black" face="Arial"><b>Air Syabas:</td>
   <td><input type="text" name="txtsyabas" size="30" ></td>
 </tr>
-
 <tr>
-<td><font color="black" face="Arial"><b>TM/UniFi:</td>
-<td><input type="text" name="txttm" size="30"></td>
+  <td><font color="black" face="Arial"><b>TM/UniFi:</td>
+  <td><input type="text" name="txttm" size="30"></td>
 </tr>
-
 <tr>
-<td><font color="black" face="Arial"><b>Astro:</td>
-<td><input type="text" name="txtastro" size="30"></td>
+  <td><font color="black" face="Arial"><b>Astro:</td>
+  <td><input type="text" name="txtastro" size="30"></td>
 </tr>
-
 </table>
 <p><input type="button" value="Kira Jumlah" onclick="return calc()"></p>
 
@@ -90,14 +116,6 @@ Cari Runner</button></a>
 </td></tr>
 
 </center>
-
-
-
-
-
-
-
-
 
 
 <hr>

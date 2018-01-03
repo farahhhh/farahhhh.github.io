@@ -41,6 +41,18 @@ header {background: black;color:white;}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-red.min.css" />
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+<link rel="stylesheet" href="style.css"/>
+
+
 <div id="content">
 
 <title> Personal Runner</title>
@@ -53,36 +65,54 @@ header {background: black;color:white;}
       <a class="navbar-brand" href="index.php"><img src="runner.png" height="80" width="90" align="top" height="0"></a>
      </div>
 
-       <h1><font color="white">Personal Runner</h1>
+       <h1><font color="white">Personal Runner</h1> 
+        <button id="signOutBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+        Sign Out
+      </button>
     
   </div>
 </nav>
 
+<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBJEiXovPX3Z2rWeZo11VnMs5cHKZKdbCc",
+    authDomain: "personalrunner-84e14.firebaseapp.com",
+    databaseURL: "https://personalrunner-84e14.firebaseio.com",
+    projectId: "personalrunner-84e14",
+    storageBucket: "personalrunner-84e14.appspot.com",
+    messagingSenderId: "735369791480"
+  };
+  firebase.initializeApp(config);
+</script>
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+  <script src="index.js"></script>
 <!-- end of header -->
 </head>
 
 
 <body>
 <br>
-<center><h3><b><font color="black">Please choose this two services below:</font></b></h3></center>
+<center><h6><b><font color="black">Please choose this two services below:</font></b></h6></center>
 <br><br>
 <center>    
 <table border="0">
   
   <tr>
-    <th width="300" height="200">
+    <th width="200" height="100">
      <a href="barangRuncit.html">
-   <img src="groceries.png" width="300" height="200"/><br>
-    <center><h3><b><font color="black">Groceries<br></h3></a></center>
+   <img src="groceries.png" width="200" height="100"/><br>
+    <center><h5><b><font color="black">Groceries<br></h5></a></center>
     </font></th>
    
   </tr>
 
 <tr>
-   <th width="300" height="200">
+   <th width="200" height="100">
   <a href="bil.html">  
-  <img src="pay.png" width="300" height="200"/><br>
-    <center><h3><b><font color="black">Utilities Bill</a></h3><br></center>
+  <img src="pay.png" width="200" height="100"/><br>
+    <center><h5><b><font color="black">Utilities Bill</a></h5><br></center>
   </th>
   </font>
   </tr>

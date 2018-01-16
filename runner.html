@@ -37,8 +37,7 @@
 
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script>
-  
-alert("HAII");
+
 var rootRef = firebase.database().ref().child("RUNNER");
 var zz=1;
 rootRef.on("child_added", snap =>{
@@ -49,7 +48,7 @@ rootRef.on("child_added", snap =>{
     var t = snap.child("ALAMAT").val();
 
 
-    $("#table_body").append("<br><br><center> <a href='Runner"+zz+".html'><img src='run1.jpg' width='200' height='200'/><br>  <center><h3><font color='black'><b>"+name+"<br></a>"+t+" </h3></center>");
+    $("#table_body").append("<br><br><center> <a href='Runner"+zz+".html'><img src='runner.png' width='300' height='300'/><br>  <center><h3><font color='black'><b>"+name+"<br></a>"+t+" </h3></center>");
     zz++;
 });
 

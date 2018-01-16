@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Firebase Web Basics</title>
 
 </head>
@@ -8,7 +11,7 @@
 
 
       <h1>RUNNERS</h1><br>
-      <table border=1 width="100%" align="center" height="80%">
+      <table  width="100%" align="center" height="80%">
           <thead>
               <tr>
                   <td align="center">RUNNERS</td>
@@ -19,7 +22,6 @@
           </tbody>
       </table>       
     </div>
-
 
 <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
 <script>
@@ -38,7 +40,15 @@
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script>
   
-alert("HAII");
+  function submit(){
+    alert("Anda telah menempah 'Arif'. Sila tunggu untuk penghantaran ke rumah anda.");
+    window.location.replace("index.html");
+  }
+
+  function submitBatal(){
+    window.location.replace("index.html");
+  }
+
 var rootRef = firebase.database().ref().child("RUNNER");
 var z=0;
 rootRef.on("child_added", snap =>{
@@ -50,11 +60,32 @@ rootRef.on("child_added", snap =>{
 
     
     if(z==0){
-    $("#table_body").append("<br><br><center> <img src='run1.jpg' width='300' height='300'/><br>  <center><h3><font color='black'><b>"+name+"<br>"+i+"<br><a href='tel:+6"+t+"'>"+t+"</a><br>"+aa+" </h3></center>");
+    $("#table_body").append("<br><br><center> <img src='runner.png' width='300' height='300'/><br>  <center><h3><font color='black'><b>"+name+"<br>"+i+"<br><a href='tel:+6"+t+"'>"+t+"</a><br>"+aa+" </h3></center>");
 }
 z++;
 });
 
+var totalCart = parseFloat(localStorage.getItem("totalCart"));
+var totalBil = parseFloat(localStorage.getItem("totalBil"));
+var total = totalCart + totalBil;
+
+
 </script>
+
+ <br>
+ Jumlah bil eletrik dan barangan runcit yang perlu dibayar <b id="displayTotal" ></b><br>Sila tekan butang 'HANTAR' untuk meneruskan proses.
 </body>
+<script>
+  document.getElementById("displayTotal").innerHTML = "RM"+total;
+  </script>
+<br><br>
+  <center>
+    <table>
+      <tr>
+        <td><input type="submit" name="ss" value="HANTAR" onclick="submit()"></td>
+
+        <td><input type="submit" name="ss" value="BATAL" onclick="submitBatal()"></td>
+      </tr>
+    </table>
+  </center>
 </html>

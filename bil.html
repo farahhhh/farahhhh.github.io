@@ -1,52 +1,98 @@
 <!DOCTYPE>
 <html>
 <head>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      table {
+          border-collapse: collapse;
+          width: 30%;
+      }
 
+      th, td {
+          text-align: center;
+          padding: 2px;
+      }
+
+      th{
+        font-color: #6c6e71;
+      }
+    </style>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
 	<script type="text/javascript">
+		var uuid = localStorage.getItem('myUuid');
+		 var config = {
+		    apiKey: "AIzaSyBJEiXovPX3Z2rWeZo11VnMs5cHKZKdbCc",
+		    authDomain: "personalrunner-84e14.firebaseapp.com",
+		    databaseURL: "https://personalrunner-84e14.firebaseio.com",
+		    projectId: "personalrunner-84e14",
+		    storageBucket: "personalrunner-84e14.appspot.com",
+		    messagingSenderId: "735369791480"
+		  };
+		  firebase.initializeApp(config);
+		
+		function Clear(){
+			document.getElementById("txttnb").value= "";
+		}
+		function Clear2(){
+			document.getElementById("txtsyabas").value= "";
+		}
+		function Clear3(){
+			document.getElementById("txttm").value= "";
+		}
+		function Clear4(){
+			document.getElementById("txtastro").value= "";
+		}
+		
+		var tot,t,s,a,u;
 		
 		function add(){
+		    t=document.frmBil.txttnb.value;
+		    s=document.frmBil.txtsyabas.value;
+		    a=document.frmBil.txtastro.value;
+		    u=document.frmBil.txttm.value;
 
-			    var t=document.frmBil.txttnb.value;
-			    var s=document.frmBil.txtsyabas.value;
-			    var a=document.frmBil.txtastro.value;
-			    var u=document.frmBil.txttm.value;
+		    t = parseFloat(t);
+		    s = parseFloat(s);
+		    a = parseFloat(a);
+		    u = parseFloat(u);
 
-			    t = parseFloat(t);
-			    s = parseFloat(s);
-			    a = parseFloat(a);
-			    u = parseFloat(u);
-
-			    var tot = t+s+a+u;
-			    document.getElementById("jum").value=tot;
-
-			    var database = firebase.database();
-
-			        var ref = database.ref('BIL');
-
-			        var data = {
-			          TNB: t,
-			          SYABAS: s,
-			          TM: a,
-			          ASTRO: u,
-			          JUMLAH: tot,
-			        }
-			        ref.push(data);
-
-			        alert("Data anda telah disimpan. Sila tekan butang 'Cari Runner' untuk mencari runner")
+		    tot = t+s+a+u;
+		    localStorage.setItem("totalBil",tot);
+		    document.getElementById("jum").value=tot;
 		}
 
-		 // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBJEiXovPX3Z2rWeZo11VnMs5cHKZKdbCc",
-    authDomain: "personalrunner-84e14.firebaseapp.com",
-    databaseURL: "https://personalrunner-84e14.firebaseio.com",
-    projectId: "personalrunner-84e14",
-    storageBucket: "personalrunner-84e14.appspot.com",
-    messagingSenderId: "735369791480"
-  };
-  firebase.initializeApp(config);
+	var database = firebase.database();
+	function insertDatabase(){
+	// Initialize Firebase
+        var ref = database.ref('BIL/'+uuid+'/');
+        var data = {
+          TNB: t,
+          SYABAS: s,
+          TM: a,
+          ASTRO: u,
+          JUMLAH: tot,
+        }
+        ref.update(data);
+        window.location.replace("runner.html");
+	}
+
+	function insertDatabase2(){
+	// Initialize Firebase
+		//var database = firebase.database();
+        var ref = database.ref('BIL/'+uuid+'/');
+        var data = {
+          TNB: t,
+          SYABAS: s,
+          TM: a,
+          ASTRO: u,
+          JUMLAH: tot,
+        }
+        ref.push(data);
+       	window.location.replace("index.html");
+	}
+
 	</script>
 	
 </head>
@@ -54,37 +100,51 @@
 <body align="center">
 
 	
-	<form name="frmBil">
+	<form name="frmBil" onsubmit="return false">
 	<centre><h1><font color="black" face="Courier New"><b>Utilities Bills</font></h1>
 
-	<table border="1" width="40%" height= "30%" align="center">
+	<table border="1"  height= "20%" align="center">
 
 	<tr>
-	  <td><font color="black" face="Arial"><b>TNB:</td>
-	  <td><input type="text" name="txttnb" size="30" ></td>
+	  <td><font color="black" face="Arial"><b>TNB: (RM)</td>
+	  <td><input type="text" id="txttnb" name="txttnb" size="30" value="0" onClick="Clear();" onkeyup="add()"></td>
 	</tr>
 	<tr>  
-	  <td><font color="black" face="Arial"><b>Air Syabas:</td>
-	  <td><input type="text" name="txtsyabas" size="30" ></td>
+	  <td><font color="black" face="Arial"><b>Air Syabas: (RM)</td>
+	  <td><input type="text" id="txtsyabas" name="txtsyabas" size="30" value="0" onClick="Clear2();" onkeyup="add()"></td>
 	</tr>
 	<tr>
-	  <td><font color="black" face="Arial"><b>TM/UniFi:</td>
-	  <td><input type="text" name="txttm" size="30"></td>
+	  <td><font color="black" face="Arial"><b>TM/UniFi: (RM)</td>
+	  <td><input type="text" id="txttm" name="txttm" size="30" value="0" onClick="Clear3();" onkeyup="add()"></td>
 	</tr>
 	<tr>
-	  <td><font color="black" face="Arial"><b>Astro:</td>
-	  <td><input type="text" name="txtastro" size="30"></td>
+	  <td><font color="black" face="Arial"><b>Astro: (RM)</td>
+	  <td><input type="text" id="txtastro" name="txtastro" size="30" value="0" onClick="Clear4();" onkeyup="add()"></td>
 	</tr>
 	</table><br><br>
-	<input type="button" name="z" onclick="add()" value="Calculate"> <br>
 
-	<p>Total Payment:
+	<p>Total Payment: (RM)
 	<input type="text" name="textJumlah" name="jum" id="jum" disabled>
 	</form>
-	<br><br><br>
-	<button class="button" style="vertical-align:middle">
-	 <a href="runner.html">
-	Book Runner</button></a>
+	<br>
+	<!--<button class="button" style="vertical-align:middle">
+	 <a href="runner.html" style="text-decoration: none">
+	Book Runner</button></a>-->
+
+
+	<br>
+	<p>Ingin meneruskan pembayaran?</p><center>
+	<div class="nostyle">
+	<table>
+		<tr>
+			<td><input type="button" onclick="insertDatabase()" align="center" value='YA'></td>
+			<td><input type="button" onclick="insertDatabase2()" align="center" value='TIDAK'></td>
+		</tr>
+	</table>
+	</div>
+</center>
+
+
 
 </body>
 </html>

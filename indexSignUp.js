@@ -10,6 +10,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       dialogPolyfill.registerDialog(dialog);
     }
     dialog.close();
+     window.location.replace("index.html");
 
   } else {
     // No user is signed in.
@@ -72,6 +73,11 @@ $("#signOutBtn").click(
 
 			$("#loginProgress").hide();
 			$("#loginBtn").show();
+
+			localStorage.setItem("totalCart",0);
+			localStorage.setItem("totalBil",0);
+
+			window.location.replace("login.html");	
 	});
 
 

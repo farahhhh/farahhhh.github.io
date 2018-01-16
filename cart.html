@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        var uuid = localStorage.getItem('myUuid');
+    </script>
+
+<div id="bg"><img src="b2.jpg" width="100%" height="100%" alt=""></div>
+<div id="content">
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+<div id="content">
+
+<title> Personal Runner</title>
+
+<head>
+<br>
+<nav class="navbar navbar-inverse"><br>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.php"><img src="runner.png" height="80" width="90" align="top" height="0"></a>
+     </div>
+
+       <h1><font color="white">Personal Runner</h1>
+    
+  </div>
+</nav>
+
+<!-- end of header -->
+<script type="text/javascript">
+    var z;
+
+    var item = [];
+    var cart = [];  
+    var price = []; 
+    //price = ["31","48.99","50"];
+    function addCart(x){
+        alert("Your item has added to cart");
+
+
+        item = [["TAJ MAHAL Herba Rice 5KG","31.00"],["MOGHUL Faiza Basmathi 5KG","48.99"],["PEARL Fragrant Rice 10KG","50"]];
+        var z;
+        var a=x;
+        if(x==1){
+            z = item[0];
+            cart.push(z);
+        }
+        else if(x==2){
+            z= item[1];
+            cart.push(z);
+        }
+        else if(x==3){
+            z= item[2];
+            cart.push(z);
+        }
+        localStorage.setItem("cart",cart);
+        //alert("Your cart now : "+cart);
+    }
+    
+function calcCart(){  
+
+    if(cart=="")
+    {
+        alert("Sorry, no cart yet.");
+        return false;
+    }   
+    else{
+
+        var total=0;    
+        for(var i=0;i<cart.length;i++)
+        {
+            var k = cart[i][1];
+            //alert(k);
+            z = parseFloat(k);
+            total = total + z;              
+        }
+        total = parseFloat(total);
+        total = total.toFixed(2);
+        localStorage.setItem("totalCart",total);
+        //alert("Total: "+ total);
+        k = cart;   
+        k = k.toString();
+        //alert(k);    
+
+        var database = firebase.database();
+
+        var ref = database.ref('CUSTOMER CART/'+uuid+'/');
+
+        var data = {
+          NAME: name,
+          CART: k,
+          TOTAL: total,
+        }
+        ref.push(data);
+
+        alert("Data anda telah disimpan. Sila tekan butang 'Cari Runner' untuk mencari runner");
+            window.location.replace("runner.html");
+    }
+}
+
+function tidak(){  
+
+    if(cart=="")
+    {
+        alert("Sorry, no cart yet.");
+        return false;
+    }   
+    else{
+
+        var total=0;    
+        for(var i=0;i<cart.length;i++)
+        {
+            var k = cart[i][1];
+            //alert(k);
+            z = parseFloat(k);
+            total = total + z;              
+        }
+        total = parseFloat(total);
+        total = total.toFixed(2);
+        localStorage.setItem("totalCart",total);
+        //alert("Total: "+ total);
+        k = cart;   
+        k = k.toString();
+        //alert(k);    
+
+        var database = firebase.database();
+
+        var ref = database.ref('CUSTOMER CART/'+uuid+'/');
+
+        var data = {
+          NAME: name,
+          CART: k,
+          TOTAL: total,
+        }
+        ref.push(data);
+
+        alert("Data anda telah disimpan. Sila tekan butang 'Cari Runner' untuk mencari runner");
+            window.location.replace("index.html");
+    }
+}
+
+
+  // Initialize Firebase
+var config = {
+    apiKey: "AIzaSyBJEiXovPX3Z2rWeZo11VnMs5cHKZKdbCc",
+    authDomain: "personalrunner-84e14.firebaseapp.com",
+    databaseURL: "https://personalrunner-84e14.firebaseio.com",
+    projectId: "personalrunner-84e14",
+    storageBucket: "personalrunner-84e14.appspot.com",
+    messagingSenderId: "735369791480"
+  };
+  firebase.initializeApp(config);
+
+  </script>
+</head>
+
+
+<body>
+  <tr>
+           <td align="center">
+           <br /><br />
+
+ <div class="wrapper">
+    <div id="three-column" class="container">
+    <table>
+    <tr>
+        <td><img src="tajmahal 5kg.jpg" width="200" height="250"></td>
+        <td> 
+            <font size="2" color="#008080">
+                <ul>TAJ MAHAL Herba Rice 5KG<br></ul>
+                <ul>Price : RM 31.00<br></ul>
+            </font>
+            <font size="2" color="green">
+                <ul>Including gst<br></ul>
+            </font>
+            <!--    <ul><a href="order.php" class="button">Add to cart</a></ul> 
+            -->
+            <ul><a href="#" onClick="addCart('1'); return false;">Add to cart</a></ul>
+        </td>
+        
+        <td><img src="MOGHUL Faiza Basmathi 5KG.jpg" width="200" height="250"></td>
+        <td> 
+            <font size="2" color="#008080">
+                <ul> MOGHUL Faiza Basmathi 5KG<br></ul>
+                <ul>Price : RM 48.99<br></ul>
+            </font>
+            <font size="2" color="green">
+                <ul>Including gst<br></ul>
+            </font>
+                 <ul><a href="#" onClick="addCart('2'); return false;">Add to cart</a></ul>
+        </td>        
+        <td><img src="jasmine10kg.jpg" width="200" height="250"></td>
+        <td> 
+            <font size="2" color="#008080">
+                <ul> PEARL Fragrant Rice 10KG<br></ul>
+                <ul>Price : RM 50<br></ul>
+            </font>
+            <font size="2" color="green">
+                <ul>Including gst<br></ul>
+            </font>
+                 <ul><a href="#" onClick="addCart('3'); return false;">Add to cart</a></ul>
+        </td>
+    </tr>
+    </table>
+    
+    <style type="text/css">
+        input#submit{
+          background:none;
+          border:1;
+          font-size:1em;
+          color:blue;
+        }
+    </style>
+    <br><br><center>
+    <!-- <input type="button" name="calc"  onclick="calcCart()" value="Submit" id="submit"></center> -->
+  </div>
+
+
+    <br>
+    <center><p ><h5 style="color:black;">Ingin meneruskan pembayaran?</p></h3><center>
+    <table>
+        <tr>
+            <td><input type="button" name="calc"  onclick="calcCart()" value="YA" id="submit"></td>
+            <td>&nbsp;&nbsp;&nbsp;<input type="button" name="calc"  onclick="tidak()" value="TIDAK" id="submit"></td>
+        </tr>
+    </table>
+</center>
+
+
+
+<hr>
+<footer class="container-fluid text-center">
+<body link="white">
+ <center> <font color="black" size="5">Copyright © PersonalRunner 2017 All rights reserved.</center>
+</footer>
+<hr>
+</div>
+</body>
+
+</html>

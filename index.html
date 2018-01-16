@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+  function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+}
+
+var myUuid = localStorage.getItem('myUuid');
+if (!myUuid) {
+  myUuid = guid();
+  localStorage.setItem('myUuid', myUuid);
+}
+
+console.log(localStorage.getItem('myUuid'));
+</script>
 
 <style>
 
@@ -65,8 +81,8 @@ header {background: black;color:white;}
       <a class="navbar-brand" href="index.php"><img src="runner.png" height="80" width="90" align="top" height="0"></a>
      </div>
 
-       <h3><font color="white">Personal Runner</h3> 
-        <button id="signOutBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+       <h1><font color="white">Personal Runner</h1> 
+        <button id="signOutBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" >
         Sign Out
       </button>
     
@@ -94,25 +110,25 @@ header {background: black;color:white;}
 
 <body>
 <br>
-<center><h6><b><font color="black">Please choose this two services below:</font></b></h6></center>
+<center><h3><b><font color="black">Please choose this two services below:</font></b></h3></center>
 <br><br>
 <center>    
 <table border="0">
   
   <tr>
-    <th width="200" height="100">
-     <a href="barangRuncit.html">
-   <img src="groceries.png" width="200" height="100"/><br>
-    <center><h5><b><font color="black">Groceries<br></h5></a></center>
+    <th width="300" height="200">
+     <a href="cart.html">
+   <img src="groceries.png" width="300" height="200"/><br>
+    <center><h3><b><font color="black">Groceries<br></h3></a></center>
     </font></th>
    
   </tr>
 
 <tr>
-   <th width="200" height="100">
+   <th width="300" height="200">
   <a href="bil.html">  
-  <img src="pay.png" width="200" height="100"/><br>
-    <center><h5><b><font color="black">Utilities Bill</a></h5><br></center>
+  <img src="pay.png" width="300" height="200"/><br>
+    <center><h3><b><font color="black">Utilities Bill</a></h3><br></center>
   </th>
   </font>
   </tr>

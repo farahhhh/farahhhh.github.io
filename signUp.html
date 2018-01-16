@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PERSONAL RUNNER SIGN UP</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-red.min.css" />
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+
+
+<!--LOGIN DIALOG-->
+
+
+	<dialog id="loginDialog" class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Daftar Baru</h4>
+    <div class="mdl-dialog__content">
+    	<p id="loginError"></p>
+    	  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		    <input class="mdl-textfield__input" type="text" id="loginEmail">
+		    <label class="mdl-textfield__label" for="sample3">Email</label>
+		  </div>
+		  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		    <input class="mdl-textfield__input" type="text" id="loginPassword">
+		    <label class="mdl-textfield__label" for="sample3">Kata Laluan</label>
+		  </div>
+
+    </div>
+    <div class="mdl-dialog__actions"><!-- Colored raised button -->
+		
+		<a href="index.html"><button id="signUpBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+		  Kembali
+		</button></a>
+
+		<button id="loginBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+		  Daftar Baru
+		</button>
+		
+		<!-- MDL Spinner Component -->
+	<div id="loginProgress" class="mdl-spinner mdl-js-spinner is-active"></div>
+    </div>
+  </dialog>
+
+	<div class="login-cover">
+		<!-- MDL Spinner Component -->
+		<div class="page-loader mdl-spinner mdl-js-spinner is-active"></div>
+	</div>
+
+<!-- MAIN PAGE CONTENT -->
+<div class="mdl-layout mdl-js-layout">
+
+      <!-- Colored raised button -->
+      <button id="signOutBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+        Daftar<i class="button-right-icon material-icons">account_circle</i>
+      </button>
+        </nav>
+
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+    </div>
+
+<br>
+<center><h3><b><font color="black">Terdapat dua servis ditawarkan. Sila pilih di antara dua servis berikut:</font></b></h3></center>
+<br><br>
+<center>    
+<table border="0">
+  
+  <tr>
+    <th width="300" height="200">
+     <a href="cart.html">
+   <img src="groceries.png" width="300" height="200"/><br>
+    <center><h3><b><font color="black">Barang Runcit<br></h3></a></center>
+    </font></th>
+   
+  </tr>
+
+<tr>
+   <th width="300" height="200">
+  <a href="bil.html">  
+  <img src="bilelektrik.png" width="300" height="200"/><br>
+    <center><h3><b><font color="black">Bil Elektrik</a></h3><br></center>
+  </th>
+  </font>
+  </tr>
+  
+  
+
+</center>
+</table>
+
+
+<hr>
+<footer class="container-fluid text-center">
+<body link="white">
+ <center> <font color="white" size="5">Copyright © PersonalRunner 2017 All rights reserved.</center>
+</footer>
+<hr>
+</div>
+  </div>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBJEiXovPX3Z2rWeZo11VnMs5cHKZKdbCc",
+    authDomain: "personalrunner-84e14.firebaseapp.com",
+    databaseURL: "https://personalrunner-84e14.firebaseio.com",
+    projectId: "personalrunner-84e14",
+    storageBucket: "personalrunner-84e14.appspot.com",
+    messagingSenderId: "735369791480"
+  };
+  firebase.initializeApp(config);
+</script>
+
+	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+	<script src="indexSignUp.js"></script>
+
+</body>
+</html>

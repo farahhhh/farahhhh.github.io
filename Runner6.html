@@ -7,11 +7,11 @@
 <body>
 
 
-      <h1>RUNNERS</h1><br>
+      <h1>Maklumat RUNNER yang telah anda pilih</h1><br>
       <table border=1 width="100%" align="center" height="80%">
           <thead>
               <tr>
-                  <td align="center">RUNNERS</td>
+                  <td align="center">RUNNER</td>
               </tr>
           </thead>
           <tbody id="table_body">
@@ -37,8 +37,15 @@
 
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script>
-  
-alert("HAII");
+  function submit(){
+    alert("Anda telah menempah 'Wan Mohd Aniq'. Sila tunggu untuk penghantaran ke rumah anda.");
+    window.location.replace("homepage.html");
+  }
+
+  function submitBatal(){
+    window.location.replace("homepage.html");
+  }
+
 var rootRef = firebase.database().ref().child("RUNNER");
 var z=0;
 rootRef.on("child_added", snap =>{
@@ -50,11 +57,32 @@ rootRef.on("child_added", snap =>{
 
     
     if(z==5){
-    $("#table_body").append("<br><br><center> <img src='runner.png' width='300' height='300'/><br>  <center><h3><font color='black'><b>"+name+"<br>"+i+"<br><a href='tel:+6"+t+"'>"+t+"</a><br>"+aa+" </h3></center>");
+    $("#table_body").append("<br><br><center> <img src='run6.jpg' width='150' height='150'/><br>  <center><h3><font color='black'><b>"+name+"<br>"+i+"<br><a href='tel:+6"+t+"'>"+t+"</a><br>"+aa+" </h3></center>");
 }
 z++;
 });
 
+var totalCart = parseFloat(localStorage.getItem("totalCart"));
+var totalBil = parseFloat(localStorage.getItem("totalBil"));
+var total = totalCart + totalBil;
+
+
 </script>
+
+ <br><center>
+ Jumlah servis yang perlu dibayar <b id="displayTotal" ></b><br>Sila tekan butang 'HANTAR' untuk meneruskan proses.  </center>
 </body>
+<script>
+  document.getElementById("displayTotal").innerHTML = "RM"+total;
+  </script>
+<br><br>
+  <center>
+    <table>
+      <tr>
+        <td><input type="submit" name="ss" value="HANTAR" onclick="submit()"></td>
+
+        <td><input type="submit" name="ss" value="BATAL" onclick="submitBatal()"></td>
+      </tr>
+    </table>
+  </center>
 </html>

@@ -11,7 +11,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
     dialog.close();
      console.log("login");
-    window.location.replace("index.html");
+    window.location.replace("homepage.html");
 
   } else {
     // No user is signed in.
@@ -80,7 +80,7 @@ $("#signOutBtn").click(
 
 			localStorage.setItem("totalCart",0);
 			localStorage.setItem("totalBil",0);
-						window.location.replace("login.html");	
+						window.location.replace("index.html");	
 	});
 
 

@@ -42,10 +42,10 @@
     var price = []; 
     //price = ["31","48.99","50"];
     function addCart(x){
-        alert("Your item has added to cart");
+        alert("Pembelian anda telah berjaya ditambah");
 
 
-        item = [["TAJ MAHAL Herba Rice 5KG","31.00"],["MOGHUL Faiza Basmathi 5KG","48.99"],["PEARL Fragrant Rice 10KG","50"]];
+        item = [["TAJ MAHAL Herba Rice 5KG","31.00"],["MOGHUL Faiza Basmathi 5KG","48.99"],["PEARL Fragrant Rice 10KG","50"],["Minyak Naturel Sunflower","20.99"],["Minyak Naturel Olive Oil","16.99"],["Minyak Saji","21.39"]];
         var z;
         var a=x;
         if(x==1){
@@ -60,6 +60,18 @@
             z= item[2];
             cart.push(z);
         }
+        else if(x==4){
+            z= item[3];
+            cart.push(z);
+        }
+        else if(x==5){
+            z= item[4];
+            cart.push(z);
+        }
+        else if(x==6){
+            z= item[5];
+            cart.push(z);
+        }
         localStorage.setItem("cart",cart);
         //alert("Your cart now : "+cart);
     }
@@ -68,7 +80,7 @@ function calcCart(){
 
     if(cart=="")
     {
-        alert("Sorry, no cart yet.");
+        alert("Maaf, Tiada pembelian.");
         return false;
     }   
     else{
@@ -100,8 +112,8 @@ function calcCart(){
         }
         ref.push(data);
 
-        alert("Data anda telah disimpan. Sila tekan butang 'Cari Runner' untuk mencari runner");
-            window.location.replace("Runner.html");
+        alert("Data anda telah disimpan.");
+            window.location.replace("runner.html");
     }
 }
 
@@ -109,7 +121,7 @@ function tidak(){
 
     if(cart=="")
     {
-        alert("Sorry, no cart yet.");
+        alert("Maaf, Tiada pembelian lagi.");
         return false;
     }   
     else{
@@ -141,7 +153,7 @@ function tidak(){
         }
         ref.push(data);
 
-        alert("Data anda telah disimpan. Sila tekan butang 'Cari Runner' untuk mencari runner");
+        alert("Data anda telah disimpan.");
             window.location.replace("index.html");
     }
 }
@@ -169,45 +181,95 @@ var config = {
 
  <div class="wrapper">
     <div id="three-column" class="container">
+
+    <style>
+    table{
+        width: 50%;
+    }
+
+    td, th{
+        padding: 8px;
+    }
+</style>
     <table>
     <tr>
-        <td><img src="tajmahal 5kg.jpg" width="100" height="100"></td>
+        <td><font size="2" color="black"><img src="tajmahal 5kg.jpg" width="100" height="100"><br>
+            Beras TAJ MAHAL Herba 5KG<br>
+            Harga : RM 31.00<br>
+            Harga termasuk GST<br>
+            <a href="#" onClick="addCart('1'); return false;">Tambah pembelian</a></font>
+        </td>
+        <td><font size="2" color="black"><img src="MOGHUL Faiza Basmathi 5KG.jpg" width="100" height="100"><br>
+            Beras MOGHUL Faiza Basmathi 5KG<br>
+            Harga : RM 48.99<br>
+            Harga termasuk GST<br>
+            <a href="#" onClick="addCart('2'); return false;">Tambah pembelian</a></font>
+        </td>
+        <td><font size="2" color="black"><img src="jasmine10kg.jpg" width="100" height="100"><br>
+            Beras PEARL Fragrant 10KG<br>
+            Harga : RM 50.00<br>
+            Harga termasuk GST<br>
+            <a href="#" onClick="addCart('3'); return false;">Tambah pembelian</a></font>
+        </td>
+        </tr>
+
+    <tr>
+        <td><font size="2" color="black"><img src="sunflower3kg.jpg" width="100" height="100"><br>
+            Minyak Naturel Sunflower<br>
+            Harga : RM 20.99<br>
+            Harga termasuk GST<br>
+            <a href="#" onClick="addCart('4'); return false;">Tambah pembelian</a></font>
+        </td>
+        <td><font size="2" color="black"><img src="naturelExtra.jpg" width="100" height="100"><br>
+            Minyak Naturel Olive Oil<br>
+            Harga : RM 16.99<br>
+            Harga termasuk GST<br>
+            <a href="#" onClick="addCart('5'); return false;">Tambah pembelian</a></font>
+        </td>
+        <td><font size="2" color="black"><img src="sajicookingoil5kg.jpg" width="100" height="100"><br>
+            Minyak Saji<br>
+            Harga : RM 21.39<br>
+            Harga termasuk GST<br>
+            <a href="#" onClick="addCart('6'); return false;">Tambah pembelian</a></font>
+        </td>
+        </tr>    
+    <!-- <tr>
+        <td><img src="tajmahal 5kg.jpg" width="200" height="250"></td>
         <td> 
             <font size="2" color="#008080">
-                <ul>Beras TAJ MAHAL 5KG<br></ul>
-                <ul>Harga : RM 31.00<br></ul>
+                <ul>TAJ MAHAL Herba Rice 5KG<br></ul>
+                <ul>Price : RM 31.00<br></ul>
             </font>
             <font size="2" color="green">
-                <ul>Harga termasuk gst<br></ul>
+                <ul>Including gst<br></ul>
             </font>
-            <!--    <ul><a href="order.php" class="button">Add to cart</a></ul> 
-            -->
+              
             <ul><a href="#" onClick="addCart('1'); return false;">Add to cart</a></ul>
         </td>
         
-        <td><img src="MOGHUL Faiza Basmathi 5KG.jpg" width="100" height="100"></td>
+        <td><img src="MOGHUL Faiza Basmathi 5KG.jpg" width="200" height="250"></td>
         <td> 
             <font size="2" color="#008080">
                 <ul> MOGHUL Faiza Basmathi 5KG<br></ul>
-                <ul>Harga : RM 48.99<br></ul>
+                <ul>Price : RM 48.99<br></ul>
             </font>
             <font size="2" color="green">
-                <ul>Harga termasuk gst<br></ul>
+                <ul>Including gst<br></ul>
             </font>
                  <ul><a href="#" onClick="addCart('2'); return false;">Add to cart</a></ul>
         </td>        
-        <td><img src="jasmine10kg.jpg" width="100" height="100"></td>
+        <td><img src="jasmine10kg.jpg" width="200" height="250"></td>
         <td> 
             <font size="2" color="#008080">
-                <ul> Beras PEARL Fragrant 10KG<br></ul>
-                <ul>Harga : RM 50<br></ul>
+                <ul> PEARL Fragrant Rice 10KG<br></ul>
+                <ul>Price : RM 50<br></ul>
             </font>
             <font size="2" color="green">
-                <ul>Harga termasuk gst<br></ul>
+                <ul>Including gst<br></ul>
             </font>
                  <ul><a href="#" onClick="addCart('3'); return false;">Add to cart</a></ul>
         </td>
-    </tr>
+    </tr> -->
     </table>
     
     <style type="text/css">
@@ -224,9 +286,10 @@ var config = {
 
 
     <br>
-    <center><p ><h5 style="color:black;"><p>Ingin segera meneruskan pembayaran?<br>
+    <p><b><font color="black">Ingin segera meneruskan pembayaran?<br>
     Sila tekan 'YA' untuk menempah khidmat Runner Kami.<br>
-    Tekan 'TIDAK' untuk pergi ke menu utama.</p><center>
+    Tekan 'TIDAK' untuk pergi ke menu utama.</p>
+    <!-- <center><p ><h5 style="color:black;">Ingin meneruskan pembayaran?</p></h3><center> -->
     <table>
         <tr>
             <td><input type="button" name="calc"  onclick="calcCart()" value="YA" id="submit"></td>
@@ -237,7 +300,13 @@ var config = {
 
 
 
-
+<hr>
+<footer class="container-fluid text-center">
+<body link="white">
+ <center> <font color="black" size="2">Copyright © PersonalRunner 2017.</center>
+</footer>
+<hr>
+</div>
 </body>
 
 </html>

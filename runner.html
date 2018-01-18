@@ -41,18 +41,28 @@
 
 var rootRef = firebase.database().ref().child("RUNNER");
 var zz=1;
+var i=1;
 rootRef.on("child_added", snap =>{
 
     var name = snap.child("NAMA").val();
     var i = snap.child("ID").val();
     var t = snap.child("TELIFON").val();
-    var t = snap.child("ALAMAT").val();
+    var t = snap.child("ALAMAT").val();    
+    var im = snap.child("RUNNER_PROFILE").val();
 
 
-    $("#table_body").append("<br><br> <a href='Runner"+zz+".html'><img src='run1.jpg' width='200' height='200'/><br> <h3><font color='black'><b>"+name+"<br></a>"+t+" </h3></center>");
+    $("#table_body").append("<br><br> <a href='Runner"+zz+".html'><img src="+im+" width='200' height='200'/><br> <h3><font color='black'><b>"+name+"<br></a>"+t+" </h3></center>");
     zz++;
 });
 
 </script>
+<hr>
+<footer class="container-fluid text-center">
+<body link="white">
+ <center> <font color="black" size="2">Copyright © PersonalRunner 2017.</center>
+</footer>
+<hr>
+</div>
 </body>
+
 </html>

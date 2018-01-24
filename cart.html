@@ -1,51 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <script>
+<script>
         var uuid = localStorage.getItem('myUuid');
     </script>
 
-<div id="bg"><img src="b2.jpg" width="100%" height="100%" alt=""></div>
-<div id="content">
-
 <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Personal Runner</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/scrolling-nav.css" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-<div id="content">
+	<script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+	<script type="text/javascript">
+    </script>
 
-<title> Personal Runner</title>
 
-<head>
-<br>
-<nav class="navbar navbar-inverse"><br>
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="index.php"><img src="runner.png" height="80" width="90" align="top" height="0"></a>
-     </div>
+    <!-- end of header -->
 
-       <h1><font color="white">Personal Runner</h1>
-    
-  </div>
-</nav>
-
-<!-- end of header -->
 <script type="text/javascript">
+
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyBJEiXovPX3Z2rWeZo11VnMs5cHKZKdbCc",
+    authDomain: "personalrunner-84e14.firebaseapp.com",
+    databaseURL: "https://personalrunner-84e14.firebaseio.com",
+    projectId: "personalrunner-84e14",
+    storageBucket: "personalrunner-84e14.appspot.com",
+    messagingSenderId: "735369791480"
+  };
+  firebase.initializeApp(config);
+   var database = firebase.database();
+
     var z;
 
     var item = [];
     var cart = [];  
     var price = []; 
-    //price = ["31","48.99","50"];
+    //price = ["31","48.99","50","20.99","16.99","21.39"];
     function addCart(x){
         alert("Pembelian anda telah berjaya ditambah");
 
 
-        item = [["TAJ MAHAL Herba Rice 5KG","31.00"],["MOGHUL Faiza Basmathi 5KG","48.99"],["PEARL Fragrant Rice 10KG","50"],["Minyak Naturel Sunflower","20.99"],["Minyak Naturel Olive Oil","16.99"],["Minyak Saji","21.39"]];
+        item = [["TAJ MAHAL Herba 5KG","31.00"],["MOGHUL Faiza Basmathi 5KG","48.99"],["PEARL Fragrant 10KG","50"],["Minyak Naturel Sunflower","20.99"],["Minyak Naturel Olive Oil","16.99"],["Minyak Saji","21.39"]];
         var z;
         var a=x;
         if(x==1){
@@ -76,11 +81,13 @@
         //alert("Your cart now : "+cart);
     }
     
-function calcCart(){  
+
+
+function ya(){  
 
     if(cart=="")
     {
-        alert("Maaf, Tiada pembelian.");
+        alert("Maaf, Tiada pembelian lagi.");
         return false;
     }   
     else{
@@ -101,18 +108,16 @@ function calcCart(){
         k = k.toString();
         //alert(k);    
 
-        var database = firebase.database();
-
+      
         var ref = database.ref('CUSTOMER CART/'+uuid+'/');
 
         var data = {
-          NAME: name,
+          
           CART: k,
           TOTAL: total,
         }
         ref.push(data);
-
-        alert("Data anda telah disimpan.");
+      
             window.location.replace("runner.html");
     }
 }
@@ -142,171 +147,159 @@ function tidak(){
         k = k.toString();
         //alert(k);    
 
-        var database = firebase.database();
-
+      
         var ref = database.ref('CUSTOMER CART/'+uuid+'/');
 
         var data = {
-          NAME: name,
+          
           CART: k,
           TOTAL: total,
         }
         ref.push(data);
 
-        alert("Data anda telah disimpan.");
-            window.location.replace("index.html");
+        
+            window.location.replace("homepage.html");
     }
 }
 
+function showCart()
+{
 
-  // Initialize Firebase
-var config = {
-    apiKey: "AIzaSyBJEiXovPX3Z2rWeZo11VnMs5cHKZKdbCc",
-    authDomain: "personalrunner-84e14.firebaseapp.com",
-    databaseURL: "https://personalrunner-84e14.firebaseio.com",
-    projectId: "personalrunner-84e14",
-    storageBucket: "personalrunner-84e14.appspot.com",
-    messagingSenderId: "735369791480"
-  };
-  firebase.initializeApp(config);
+        if(cart=="")
+    {
+        window.location.replace("showCart.html");
+    } 
+    else{
+        var total=0;    
+        for(var i=0;i<cart.length;i++)
+        {
+            var k = cart[i][1];
+            //alert(k);
+            z = parseFloat(k);
+            total = total + z;              
+        }
+        total = parseFloat(total);
+        total = total.toFixed(2);
+        localStorage.setItem("totalCart",total);
+        //alert("Total: "+ total);
+        k = cart;   
+        k = k.toString();
+        //alert(k);    
+
+      
+        var ref = database.ref('CUSTOMER CART/'+uuid+'/');
+
+        var data = {
+          
+          CART: k,
+          TOTAL: total,
+        }
+        ref.push(data);
+
+        window.location.replace("showCart.html");
+    } 
+            
+    
+}
+
+  
 
   </script>
 </head>
 
+</head>
+<body id="page-top">
 
-<body>
-  <tr>
-           <td align="center">
-           <br /><br />
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="homepage.html"><img src="runner.png" height="30" width="30" align="top" height="0">Barangan Runcit</a>
+        <button id="addtocartBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" onclick="showCart()"  ><img src="addtocart.png" height="30" width="30">
+      </button>
+        </div></nav>
+         <br><br><br>
 
- <div class="wrapper">
-    <div id="three-column" class="container">
+<section id="cart">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <!--<h3>Barangan Runcit </h3>-->
+            <p class="lead">Sila pilih di antara barangan berikut. Untuk membeli tekan pada "Masuk ke troli".
 
-    <style>
-    table{
-        width: 50%;
-    }
-
-    td, th{
-        padding: 8px;
-    }
-</style>
-    <table>
-    <tr>
+        <table><b><h5>Beras</h5>
+        <tr>
         <td><font size="2" color="black"><img src="tajmahal 5kg.jpg" width="100" height="100"><br>
-            Beras TAJ MAHAL Herba 5KG<br>
+            TAJ MAHAL Herba 5KG<br>
             Harga : RM 31.00<br>
             Harga termasuk GST<br>
-            <a href="#" onClick="addCart('1'); return false;">Tambah pembelian</a></font>
+            <a href="#" onClick="addCart('1'); return false;">Masuk ke troli</a></font>
         </td>
         <td><font size="2" color="black"><img src="MOGHUL Faiza Basmathi 5KG.jpg" width="100" height="100"><br>
-            Beras MOGHUL Faiza Basmathi 5KG<br>
+            MOGHUL Faiza Basmathi 5KG<br>
             Harga : RM 48.99<br>
             Harga termasuk GST<br>
-            <a href="#" onClick="addCart('2'); return false;">Tambah pembelian</a></font>
+            <a href="#" onClick="addCart('2'); return false;">Masuk ke troli</a></font>
         </td>
         <td><font size="2" color="black"><img src="jasmine10kg.jpg" width="100" height="100"><br>
-            Beras PEARL Fragrant 10KG<br>
+            PEARL Fragrant 10KG<br>
             Harga : RM 50.00<br>
             Harga termasuk GST<br>
-            <a href="#" onClick="addCart('3'); return false;">Tambah pembelian</a></font>
+            <a href="#" onClick="addCart('3'); return false;">Masuk ke troli</a></font>
         </td>
-        </tr>
+        </tr></table><br>
 
-    <tr>
+        <table><h5>Minyak Masak</h5>
+        <tr>
         <td><font size="2" color="black"><img src="sunflower3kg.jpg" width="100" height="100"><br>
             Minyak Naturel Sunflower<br>
             Harga : RM 20.99<br>
             Harga termasuk GST<br>
-            <a href="#" onClick="addCart('4'); return false;">Tambah pembelian</a></font>
+            <a href="#" onClick="addCart('4'); return false;">Masuk ke troli</a></font>
         </td>
         <td><font size="2" color="black"><img src="naturelExtra.jpg" width="100" height="100"><br>
             Minyak Naturel Olive Oil<br>
             Harga : RM 16.99<br>
             Harga termasuk GST<br>
-            <a href="#" onClick="addCart('5'); return false;">Tambah pembelian</a></font>
+            <a href="#" onClick="addCart('5'); return false;">Masuk ke troli</a></font>
         </td>
         <td><font size="2" color="black"><img src="sajicookingoil5kg.jpg" width="100" height="100"><br>
             Minyak Saji<br>
             Harga : RM 21.39<br>
             Harga termasuk GST<br>
-            <a href="#" onClick="addCart('6'); return false;">Tambah pembelian</a></font>
+            <a href="#" onClick="addCart('6'); return false;">Masuk ke troli</a></font>
         </td>
-        </tr>    
-    <!-- <tr>
-        <td><img src="tajmahal 5kg.jpg" width="200" height="250"></td>
-        <td> 
-            <font size="2" color="#008080">
-                <ul>TAJ MAHAL Herba Rice 5KG<br></ul>
-                <ul>Price : RM 31.00<br></ul>
-            </font>
-            <font size="2" color="green">
-                <ul>Including gst<br></ul>
-            </font>
-              
-            <ul><a href="#" onClick="addCart('1'); return false;">Add to cart</a></ul>
-        </td>
-        
-        <td><img src="MOGHUL Faiza Basmathi 5KG.jpg" width="200" height="250"></td>
-        <td> 
-            <font size="2" color="#008080">
-                <ul> MOGHUL Faiza Basmathi 5KG<br></ul>
-                <ul>Price : RM 48.99<br></ul>
-            </font>
-            <font size="2" color="green">
-                <ul>Including gst<br></ul>
-            </font>
-                 <ul><a href="#" onClick="addCart('2'); return false;">Add to cart</a></ul>
-        </td>        
-        <td><img src="jasmine10kg.jpg" width="200" height="250"></td>
-        <td> 
-            <font size="2" color="#008080">
-                <ul> PEARL Fragrant Rice 10KG<br></ul>
-                <ul>Price : RM 50<br></ul>
-            </font>
-            <font size="2" color="green">
-                <ul>Including gst<br></ul>
-            </font>
-                 <ul><a href="#" onClick="addCart('3'); return false;">Add to cart</a></ul>
-        </td>
-    </tr> -->
-    </table>
-    
-    <style type="text/css">
-        input#submit{
-          background:none;
-          border:1;
-          font-size:1em;
-          color:blue;
-        }
-    </style>
-    <br><br><center>
-    <!-- <input type="button" name="calc"  onclick="calcCart()" value="Submit" id="submit"></center> -->
-  </div>
-
+        </tr>
+        </table>
 
     <br>
-    <p><b><font color="black">Ingin segera meneruskan pembayaran?<br>
+    <p>Ingin segera meneruskan pembayaran?<br>
     Sila tekan 'YA' untuk menempah khidmat Runner Kami.<br>
     Tekan 'TIDAK' untuk pergi ke menu utama.</p>
-    <!-- <center><p ><h5 style="color:black;">Ingin meneruskan pembayaran?</p></h3><center> -->
+    <div class="nostyle">
     <table>
         <tr>
-            <td><input type="button" name="calc"  onclick="calcCart()" value="YA" id="submit"></td>
-            <td>&nbsp;&nbsp;&nbsp;<input type="button" name="calc"  onclick="tidak()" value="TIDAK" id="submit"></td>
+            <td><input type="button" name="calc"  onclick="ya()" value="YA" id="submit"></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name="calc"  onclick="tidak()" value="TIDAK" id="submit"></td>
         </tr>
     </table>
-</center>
+
+    </div>
+        </div>
+            </div>  
+    </section>
 
 
 
-<hr>
-<footer class="container-fluid text-center">
-<body link="white">
- <center> <font color="black" size="2">Copyright © PersonalRunner 2017.</center>
-</footer>
-<hr>
-</div>
-</body>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom JavaScript for this theme -->
+    <script src="js/scrolling-nav.js"></script>
+
+  </body>
 
 </html>

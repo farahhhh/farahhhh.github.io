@@ -1,27 +1,23 @@
-<!DOCTYPE>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
- <meta charset="utf-8"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1"> 
-    <!-- <style>
-      table {
-          border-collapse: collapse;
-          width: 30%;
-      }
+    <title>Personal Runner</title>
 
-      th, td {
-          text-align: center;
-          padding: 2px;
-      }
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-      th{
-        font-color: #6c6e71;
-      }
-    </style> -->
+    <!-- Custom styles for this template -->
+    <link href="css/scrolling-nav.css" rel="stylesheet">
+
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
 	<script type="text/javascript">
+
 		var uuid = localStorage.getItem('myUuid');
 		 var config = {
 		    apiKey: "AIzaSyBJEiXovPX3Z2rWeZo11VnMs5cHKZKdbCc",
@@ -65,8 +61,9 @@
 		}
 
 	var database = firebase.database();
-	function insertDatabase(){
+	function ya(){
 	// Initialize Firebase
+		//var database = firebase.database();
         var ref = database.ref('BIL/'+uuid+'/');
         var data = {
           TNB: t,
@@ -75,11 +72,11 @@
           ASTRO: u,
           JUMLAH: tot,
         }
-        ref.update(data);
-        window.location.replace("runner.html");
+        ref.push(data);
+       	window.location.replace("runner.html");
 	}
 
-	function insertDatabase2(){
+	function tidak(){
 	// Initialize Firebase
 		//var database = firebase.database();
         var ref = database.ref('BIL/'+uuid+'/');
@@ -97,41 +94,50 @@
 	</script>
 	
 </head>
+<body id="page-top">
 
-<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="homepage.html"><img src="runner.png" height="30" width="30" align="top" height="0">Pembayaran Bil</a>
+        <!--<button id="signOutBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" >
+        Sign Out
+      </button>-->
+        </div></nav>
 
-	
-	<form name="frmBil" onsubmit="return false">
-	<h1><font color="black" face="Courier New"><b>Bil Elektrik</font></h1>
+        <br><br><br>
 
-	<table border="1"  height= "20%">
+        <section id="bil">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <!--<h6>Pembayaran Bil </h6><-->
+            <p class="lead"><h6>Sila masukkan jumlah bil yang hendak dibayar.<h6>
+
+            <form name="frmBil" onsubmit="return false">
+    <table border="1"  height= "20%">
 
 	<tr>
-	  <td><font color="black" face="Arial"><b>TNB: (RM)</td>
-	  <td><input type="text" id="txttnb" name="txttnb" size="30" value="0" onClick="Clear();" onkeyup="add()"></td>
+	  <td><font color="black" face="Arial"><img src="TNB.png" height="80" width="80" align="top" height="0"><b>TNB: (RM)</td>
+	  <td><input type="text" id="txttnb" name="txttnb" size="6" value="0" onClick="Clear();" onkeyup="add()"></td>
 	</tr>
 	<tr>  
-	  <td><font color="black" face="Arial"><b>Air Syabas: (RM)</td>
-	  <td><input type="text" id="txtsyabas" name="txtsyabas" size="30" value="0" onClick="Clear2();" onkeyup="add()"></td>
+	  <td><font color="black" face="Arial"><img src="SYABAS.png" height="80" width="80" align="top" height="0"><b>Air Syabas: (RM)</td>
+	  <td><input type="text" id="txtsyabas" name="txtsyabas" size="6" value="0" onClick="Clear2();" onkeyup="add()"></td>
 	</tr>
 	<tr>
-	  <td><font color="black" face="Arial"><b>TM/UniFi: (RM)</td>
-	  <td><input type="text" id="txttm" name="txttm" size="30" value="0" onClick="Clear3();" onkeyup="add()"></td>
+	  <td><font color="black" face="Arial"><img src="TM.png" height="80" width="80" align="top" height="0"><b>TM/UniFi: (RM)</td>
+	  <td><input type="text" id="txttm" name="txttm" size="6" value="0" onClick="Clear3();" onkeyup="add()"></td>
 	</tr>
 	<tr>
-	  <td><font color="black" face="Arial"><b>Astro: (RM)</td>
-	  <td><input type="text" id="txtastro" name="txtastro" size="30" value="0" onClick="Clear4();" onkeyup="add()"></td>
+	  <td><font color="black" face="Arial"><img src="ASTRO.png" height="80" width="80" align="top" height="0"><b>Astro: (RM)</td>
+	  <td><input type="text" id="txtastro" name="txtastro" size="6" value="0" onClick="Clear4();" onkeyup="add()"></td>
 	</tr>
 	</table><br>
 
-	<p>Jumlah: (RM)
+	<p><b>Jumlah: (RM)
 	<input type="text" name="textJumlah" name="jum" id="jum" disabled>
 	</form>
-	<br>
-	<!--<button class="button" style="vertical-align:middle">
-	 <a href="runner.html" style="text-decoration: none">
-	Book Runner</button></a>-->
-
 
 	<p>Ingin segera meneruskan pembayaran?<br>
 	Sila tekan 'YA' untuk menempah khidmat Runner Kami.<br>
@@ -139,14 +145,40 @@
 	<div class="nostyle">
 	<table>
 		<tr>
-			<td><input type="button" onclick="insertDatabase()" align="center" value='YA'></td>
-			<td><input type="button" onclick="insertDatabase2()" align="center" value='TIDAK'></td>
+			<td><input type="button" onclick="ya()" align="center" value='YA'></td>
+			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="tidak()" align="center" value='TIDAK'></td>
 		</tr>
 	</table>
 	</div>
+        </div>
+        </div>
+      </div>
+
+      
+    </section>
+    
 
 
 
 
-</body>
+<!-- Footer -->
+    <footer class="py-2 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; PersonalRunner 2017</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom JavaScript for this theme -->
+    <script src="js/scrolling-nav.js"></script>
+
+  </body>
+
 </html>

@@ -1,0 +1,86 @@
+.button1 {
+  display: inline-block;
+  
+     
+    font-size: 40px;
+     font-family: Times New Roman;
+     color: white;
+    width: 200px;
+    height: 60px;
+
+    text-align: center;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+
+    background-color: #2c3e50;
+    border: none;
+    border-radius: 15px;
+}
+
+
+
+.button2 {
+  display: inline-block;
+  
+     font-size: 40px;
+     font-family: Times New Roman;
+     color: white;
+    width: 200px;
+    height: 60px;
+
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #111;
+  background-color: #2c3e50;
+  border: none;
+  border-radius: 15px;
+}
+
+
+.button3 {
+  display: inline-block;
+
+     font-size: 32px;
+     font-family: Times New Roman;
+     color: white;
+    width: 200px;
+    height: 90px;
+
+
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  background-color: #2c3e50;
+  border: none;
+  border-radius: 15px;
+}
+
+
+
+
+#sesat {
+        background-color: white;
+        font-family: Times New Roman;
+        display: block;
+        position: relative;
+        margin: 0px auto;
+        top: 0px;
+        width: 60%;
+        height: 40px;
+        
+
+        border-radius: 3px;
+        font-size: 15px;
+        text-align: center;
+        color: black;
+     
+    }
+#sesat:active {
+  background-color: Transparent;
+  transform: translateY(4px);
+}

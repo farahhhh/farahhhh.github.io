@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+
+        <script>
+        var uuid = localStorage.getItem('myUuid');
+    </script>
+	 <style>
+      table {
+          border-collapse: collapse;
+          width: 100%;
+         
+      }
+
+      th, td {
+          text-align: center;
+          padding: 10px;
+      }
+
+
+      th{
+        font-color: #1112;
+      }
+    </style>
+
+
+<script type="text/javascript">
+
+
+  // Initialize Firebase
+var config = {
+    apiKey: "AIzaSyBJEiXovPX3Z2rWeZo11VnMs5cHKZKdbCc",
+    authDomain: "personalrunner-84e14.firebaseapp.com",
+    databaseURL: "https://personalrunner-84e14.firebaseio.com",
+    projectId: "personalrunner-84e14",
+    storageBucket: "personalrunner-84e14.appspot.com",
+    messagingSenderId: "735369791480"
+  };
+  firebase.initializeApp(config);
+
+    var database = firebase.database();
+   
+  </script>
+
+      <script type="text/javascript">
+        
+       
+
+
+        //var rootRef = firebase.database().ref().child("CUSTOMER CART/" + uuid + "/" );
+        var database = firebase.database();
+        var rootRef = database.ref("CUSTOMER CART/" + uuid + "/");
+
+        rootRef.on("child_added", snap =>{
+
+            var key = snap.key;
+            var cart = snap.child("CART").val();
+            var total = snap.child("TOTAL").val();
+
+
+            $("#table_body").append("<tr><td  bgcolor='white'>"+ cart + "</td><td  bgcolor='white'>" + total + "</td><td  bgcolor='black'><button class='deleteCart' value='"+key+"'><src img='minus.png'></button></a></td></tr>");
+
+        });
+
+        //var rootRe = firebase.database().ref().child("BIL/"+uuid+"/");
+        var database = firebase.database();
+        var rootRe = database.ref("BIL/" + uuid + "/");
+
+          rootRe.on("child_added", snap =>{
+
+            var key = snap.key;
+            //console.log(key);
+            var as = snap.child("ASTRO").val();
+            var sy = snap.child("SYABAS").val();
+            var tm = snap.child("TM").val();
+            var tn = snap.child("TNB").val();
+
+
+            $("#table_body2").append("<tr><td  bgcolor='white' id='1'>"+ as + "</td><td  bgcolor='white'>"+ sy + "</td><td  bgcolor='white'>"+ tm + "</td><td  bgcolor='white'>"+ tn + "</td><td  bgcolor='black><button class='deleteBil' value='"+key+"'><src img='minus.png'></button></a></td></tr>" );
+
+        });
+
+        $(document).on('click','.deleteBil', function(){
+            var key = $(this).val();
+            
+            var ref = database.ref("BIL/" +uuid+ "/" + key + "/");
+            var con = confirm("Padam item yang dipilih?");
+            if(con==true){
+                ref.remove();
+                alert("Item sudah dipadam");
+                window.location.replace("showcart.html");
+            }
+        });
+
+        $(document).on('click','.deleteCart', function(){
+            var key = $(this).val();
+            
+            var ref = database.ref("CUSTOMER CART/" +uuid+ "/" + key + "/");
+            var con = confirm("Padam item yang dipilih?");
+            if(con==true){
+                ref.remove();
+                alert("Item sudah dipadam");
+                window.location.replace("showcart.html");
+            }
+        });
+
+
+      </script>
+
+
+
+    <script>
+        var uuid = localStorage.getItem('myUuid');
+    </script>
+
+<div id="bg"><img src="b2.jpg" width="100%" height="100%" alt=""></div>
+<div id="content">
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+<div id="content">
+
+<title> Personal Runner</title>
+
+<head>
+<br>
+<nav class="navbar navbar-inverse"><br>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.php"><a href="homepage.html"><img src="runner.png" height="80" width="90" align="top" height="0"></a>
+     </div>
+
+       <h1><font color="white">Personal Runner</h1>
+    
+  </div>
+</nav>
+</head>
+
+
+<body>
+<h6><font color="black">Berikut merupakan senarai barang-barang pembelian dan bil yang ditempah.</h6>
+<h4><b>Barang Runcit</h4>
+        <table width="100%" align="center" height="80%" border="1">
+          <thead>
+              <tr>
+                  <th  width="90%" bgcolor='black'><font color="white">BARANG</font></th>
+                  <th  width="5%" bgcolor='black'><font color="white">JUMLAH(RM)</font></th>
+                  <th  width="5%" bgcolor='black'><font color="white">PADAM</font></th>  
+              </tr>
+          </thead>
+          <tbody id="table_body">
+             
+          </tbody>
+      </table>
+
+<br><br>
+<h4><b>BIL</h4>
+
+        <table width="100%" align="center" height="80%" border="1">
+          <thead>
+              <tr>
+                  <th  width="20%" bgcolor='black'><font color="white">ASTRO</font></th>
+                  <th  width="20%" bgcolor='black'><font color="white">SYABAS</font></th> 
+                  <th  width="20%" bgcolor='black'><font color="white">TM</font></th> 
+                  <th  width="20%" bgcolor='black'><font color="white">TNB</font></th>
+                  <th  width="20%" bgcolor='black'><font color="white">PADAM</font></th> 
+              </tr>
+          </thead>
+          <tbody id="table_body2">
+             
+          </tbody>
+      </table>
+      
+
+
+
+<!--<hr>
+<footer class="container-fluid text-center">
+<body link="white">
+ <center> <font color="black" size="2">Copyright © PersonalRunner 2017.</center>
+</footer>
+<hr>
+</div>-->
+</body>
+
+</html>

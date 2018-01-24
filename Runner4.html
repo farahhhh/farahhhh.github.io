@@ -1,25 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Firebase Web Basics</title>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-</head>
-<body>
+    <title>Personal Runner</title>
 
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-      <h1>Maklumat RUNNER yang telah anda pilih</h1><br>
-      <table border=1 width="100%" align="center" height="80%">
-          <thead>
-              <tr>
-                  <td align="center">RUNNER</td>
-              </tr>
-          </thead>
-          <tbody id="table_body">
-             
-          </tbody>
-      </table>       
-    </div>
-
+    <!-- Custom styles for this template -->
+    <link href="css/scrolling-nav.css" rel="stylesheet">
 
 <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
 <script>
@@ -37,15 +30,15 @@
 
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script>
-
+  
  function submit(){
-    alert("Anda telah menempah 'Muhammad Asyraf'. Sila tunggu untuk penghantaran ke rumah anda.");
+    alert("Anda telah menempah 'Mohammad Asyraf'. Sila tunggu untuk penghantaran ke rumah anda.");
     window.location.replace("homepage.html");
   }
 
   function submitBatal(){
     window.location.replace("homepage.html");
-  }  
+  }
 
 var rootRef = firebase.database().ref().child("RUNNER");
 var z=0;
@@ -55,45 +48,104 @@ rootRef.on("child_added", snap =>{
     var i = snap.child("ID").val();
     var t = snap.child("TELIFON").val();
     var aa = snap.child("ALAMAT").val();
+    var car = snap.child("NOPLAT").val();
 
     
-    if(z==3){
-    $("#table_body").append("<br><br><center> <img src='run4.jpg' width='150' height='150'/><br>  <center><h3><font color='black'><b>"+name+"<br>"+i+"<br>"+t+"<br>"+aa+" </h3></center>");
-   
+    if(z==1){
+    $("#table_body").append("<br><br><center> <img src='run4.jpg' width='100' height='100'/><br>  <center><h6><font color='black'><b>"+name+"<br>"+i+"<br><a href='tel:+6"+t+"'>"+t+"</a><br>"+aa+" <br>"+car+"</h6></center>");
 }
 z++;
-});s
+});
 
- var totalCart = parseFloat(localStorage.getItem("totalCart"));
+var totalCart = parseFloat(localStorage.getItem("totalCart"));
 var totalBil = parseFloat(localStorage.getItem("totalBil"));
 var total = totalCart + totalBil;
+var servis = 10;
+var total2= total + parseInt(servis);
+total = total.toFixed(2);
+total2 = total2.toFixed(2);
+
+
 
 
 </script>
+<!-- end of header -->
 
- <br><center>
- Jumlah servis yang perlu dibayar <b id="displayTotal" ></b><br>Sila tekan butang 'HANTAR' untuk meneruskan proses.  </center>
-</body>
+  </head>
+    <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="runner.html"><img src="runner.png" height="30" width="30" align="top" height="0">Runner</a>
+        <!--<button id="signOutBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" >
+        Sign Out
+      </button>-->
+        </div></nav>
+
+<br><br><br>
+<section id="bil">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h6>Maklumat RUNNER yang telah anda pilih </h6>
+            <p class="lead">
+        
+      <table border=0 width="100%" align="center" height="80%">
+          <thead>
+              <!--<tr>
+                  <td align="center">RUNNER</td>
+              </tr>-->
+          </thead>
+          <tbody id="table_body">
+             
+          </tbody>
+      </table>       
+    </div>
+    
+<p>Jumlah barang yang perlu dibayar <b id="displayTotal" ></b><br>
+Jumlah servis runner kami <b id="servis1"></b>  <br>
+Jumlah keseluruhan ialah <b id="total"></b><br>
+Sila tekan butang 'HANTAR' untuk meneruskan proses.
+</div>
+</div>
+</section>
+
+<!--</body>-->
 <script>
   document.getElementById("displayTotal").innerHTML = "RM"+total;
+  document.getElementById("servis1").innerHTML = "RM"+servis;
+  document.getElementById("total").innerHTML = "RM"+total2;
   </script>
 <br><br>
   <center>
+    
     <table>
       <tr>
         <td><input type="submit" name="ss" value="HANTAR" onclick="submit()"></td>
 
-        <td><input type="submit" name="ss" value="BATAL" onclick="submitBatal()"></td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="ss" value="BATAL" onclick="submitBatal()"></td>
       </tr>
     </table>
   </center>
-<hr>
-<footer class="container-fluid text-center">
-<body link="white">
- <center> <font color="black" size="2">Copyright © PersonalRunner 2017.</center>
-</footer>
-<hr>
-</div>
-</body>
+    
+
+
+
+ 
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom JavaScript for this theme -->
+    <script src="js/scrolling-nav.js"></script>
+
+
+
+  </body>
 
 </html>
